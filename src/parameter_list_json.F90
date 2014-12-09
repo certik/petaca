@@ -819,7 +819,13 @@ contains
 #endif
     type is (character(*))
       deallocate(this%mold)
+#ifdef GNU_60289
+      status = FYAJL_TERMINATE_PARSING
+      errmsg = 'character arrays not supported'
+      return
+#else
       allocate(character(this%maxlen) :: this%mold)
+#endif
     end select
 
     status = FYAJL_CONTINUE_PARSING
