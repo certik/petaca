@@ -137,6 +137,11 @@
 !!      inner lists are the columns of the matrix. No newlines are are written.
 !!
 
+#ifdef GNU_54070
+! GNU_54070 is the same bug as INTEL_DPD200255963, so we just reuse the define.
+#  define INTEL_DPD200255963
+#endif
+
 module parameter_entry_class
 
   use,intrinsic :: iso_fortran_env, only: int32, int64, real32, real64
