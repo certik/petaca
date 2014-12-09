@@ -159,6 +159,11 @@
 
 #include "f90_assert.fpp"
 
+#ifdef GNU_54070
+! GNU_54070 is the same bug as INTEL_DPD200255963, so we just reuse the define.
+#  define INTEL_DPD200255963
+#endif
+
 module parameter_list_type
 
   use,intrinsic :: iso_fortran_env, only: int32, int64, real32, real64
