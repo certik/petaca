@@ -99,6 +99,7 @@ elseif(CMAKE_Fortran_COMPILER_ID MATCHES GNU)
   list(APPEND Fortran_COMPILE_DEFINITIONS NO_2008_SOURCED_ALLOC_ARRAY)
   list(APPEND Fortran_COMPILE_DEFINITIONS NO_2008_GENERIC_RESOLUTION)
   list(APPEND Fortran_COMPILE_DEFINITIONS INTEL_DPD200255963)
+  list(APPEND Fortran_COMPILE_DEFINITIONS GNU_64244)
 endif()
 
 #-------------------------------------------------------------------------------
