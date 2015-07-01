@@ -1213,7 +1213,7 @@ contains
         call set_vector (this, name, default)
 #ifdef INTEL_DPD200255963
         if (allocated(value)) deallocate(value)
-        allocate(value(size(default)), source=default)
+        allocate(character(len(default(1))) :: value(size(default)))
 #else
         value = default
 #endif
@@ -1422,7 +1422,7 @@ contains
         call set_matrix (this, name, default)
 #ifdef INTEL_DPD200255963
         if (allocated(value)) deallocate(value)
-        allocate(value(size(default, 1), size(default, 2)), source=default)
+        allocate(character(len(default(1, 1))) :: value(size(default, 1), size(default, 2)))
 #else
         value = default
 #endif
