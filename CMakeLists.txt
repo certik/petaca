@@ -57,6 +57,11 @@ elseif (CMAKE_Fortran_COMPILER_ID STREQUAL "Intel")
   set (CMAKE_Fortran_FLAGS_RELEASE "-O3 -DNDEBUG -assume realloc_lhs")
   set (CMAKE_Fortran_FLAGS_DEBUG   "-g -assume realloc_lhs")
   message(STATUS "${CMAKE_Fortran_COMPILER_VERSION}")
+elseif (CMAKE_Fortran_COMPILER_ID STREQUAL "GNU")
+  set (common "-Wall -Wextra -Wimplicit-interface -fPIC -ffree-line-length-none")
+  set (CMAKE_Fortran_FLAGS_RELEASE "${common} -O3 -march=native -ffast-math -funroll-loops")
+  set (CMAKE_Fortran_FLAGS_DEBUG   "${common} -g -fcheck=all -fbacktrace")
+  message(STATUS "${CMAKE_Fortran_COMPILER_VERSION}")
 endif()
 
 # Fortran preprocessor defines
@@ -90,6 +95,10 @@ elseif(CMAKE_Fortran_COMPILER_ID MATCHES NAG)
   list(APPEND Fortran_COMPILE_DEFINITIONS NO_2008_SOURCED_ALLOC_ARRAY)
   list(APPEND Fortran_COMPILE_DEFINITIONS NAG_88538)
   list(APPEND Fortran_COMPILE_DEFINITIONS NAG_88549)
+elseif(CMAKE_Fortran_COMPILER_ID MATCHES GNU)
+  list(APPEND Fortran_COMPILE_DEFINITIONS NO_2008_SOURCED_ALLOC_ARRAY)
+  list(APPEND Fortran_COMPILE_DEFINITIONS NO_2008_GENERIC_RESOLUTION)
+  list(APPEND Fortran_COMPILE_DEFINITIONS GNU_54070)
 endif()
 
 #-------------------------------------------------------------------------------

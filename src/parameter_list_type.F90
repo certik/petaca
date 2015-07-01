@@ -159,6 +159,11 @@
 
 #include "f90_assert.fpp"
 
+#ifdef GNU_54070
+! GNU_54070 is the same bug as INTEL_DPD200255963, so we just reuse the define.
+#  define INTEL_DPD200255963
+#endif
+
 module parameter_list_type
 
   use,intrinsic :: iso_fortran_env, only: int32, int64, real32, real64
@@ -1206,7 +1211,12 @@ contains
     else
       if (present(default)) then
         call set_vector (this, name, default)
+#ifdef INTEL_DPD200255963
+        if (allocated(value)) deallocate(value)
+        allocate(character(len(default(1))) :: value(size(default)))
+#else
         value = default
+#endif
       else
         call error ('no such parameter: "' // name // '"', stat, errmsg)
       end if
@@ -1410,7 +1420,12 @@ contains
     else
       if (present(default)) then
         call set_matrix (this, name, default)
+#ifdef INTEL_DPD200255963
+        if (allocated(value)) deallocate(value)
+        allocate(character(len(default(1, 1))) :: value(size(default, 1), size(default, 2)))
+#else
         value = default
+#endif
       else
         call error ('no such parameter: "' // name // '"', stat, errmsg)
       end if

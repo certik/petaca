@@ -14,6 +14,12 @@ set(Petaca_SOURCE_FILES
       timer_tree_type.F90)
                             
                             
+if (CMAKE_Fortran_COMPILER_ID STREQUAL "GNU")
+    # Disable compile time range checking, as the md5 sources require integer
+    # overflow.
+    set_property(SOURCE secure_hash/md5_hash_type.F90 secure_hash/sha1_hash_type.F90 PROPERTY COMPILE_FLAGS -fno-range-check)
+endif()
+
 include_directories(${Petaca_INCLUDE_DIR})
 include_directories(${Petaca_MODULE_DIR})
 
