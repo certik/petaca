@@ -493,7 +493,7 @@ contains
     type is (character(*))
 #ifdef INTEL_DPD200255963
       if (allocated(value)) deallocate(value)
-      allocate(value(size(v)), source=v)
+      !allocate(value(size(v)), source=v)
 #else
       value = v
 #endif
@@ -713,7 +713,7 @@ contains
     type is (character(*))
 #ifdef INTEL_DPD200255963
       if (allocated(value)) deallocate(value)
-      allocate(value(size(v,1),size(v,2)), source=v)
+      !allocate(value(size(v,1),size(v,2)), source=v)
 #else
       value = v
 #endif
