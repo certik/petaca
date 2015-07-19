@@ -94,6 +94,12 @@
 #define NAG_WORKAROUND
 #endif
 
+#ifdef GNU_64244
+#  define _NON_OVERRIDABLE
+#else
+#  define _NON_OVERRIDABLE , non_overridable
+#endif
+
 #include "f90_assert.fpp"
 
 module secure_hash_class
@@ -113,65 +119,65 @@ module secure_hash_class
     procedure(hexdigest), deferred, public :: hexdigest
     procedure(process_bytes), deferred, public :: process_bytes
     generic, public :: update => update_int8_0, update_int8_1, update_int8_2, update_int8_3
-    procedure, non_overridable :: update_int8_0
-    procedure, non_overridable :: update_int8_1
-    procedure, non_overridable :: update_int8_2
-    procedure, non_overridable :: update_int8_3
+    procedure _NON_OVERRIDABLE :: update_int8_0
+    procedure _NON_OVERRIDABLE :: update_int8_1
+    procedure _NON_OVERRIDABLE :: update_int8_2
+    procedure _NON_OVERRIDABLE :: update_int8_3
     generic, public :: update => update_int16_0, update_int16_1, update_int16_2, update_int16_3
-    procedure, non_overridable :: update_int16_0
-    procedure, non_overridable :: update_int16_1
-    procedure, non_overridable :: update_int16_2
-    procedure, non_overridable :: update_int16_3
+    procedure _NON_OVERRIDABLE :: update_int16_0
+    procedure _NON_OVERRIDABLE :: update_int16_1
+    procedure _NON_OVERRIDABLE :: update_int16_2
+    procedure _NON_OVERRIDABLE :: update_int16_3
     generic, public :: update => update_int32_0, update_int32_1, update_int32_2, update_int32_3
-    procedure, non_overridable :: update_int32_0
-    procedure, non_overridable :: update_int32_1
-    procedure, non_overridable :: update_int32_2
-    procedure, non_overridable :: update_int32_3
+    procedure _NON_OVERRIDABLE :: update_int32_0
+    procedure _NON_OVERRIDABLE :: update_int32_1
+    procedure _NON_OVERRIDABLE :: update_int32_2
+    procedure _NON_OVERRIDABLE :: update_int32_3
     generic, public :: update => update_int64_0, update_int64_1, update_int64_2, update_int64_3
-    procedure, non_overridable :: update_int64_0
-    procedure, non_overridable :: update_int64_1
-    procedure, non_overridable :: update_int64_2
-    procedure, non_overridable :: update_int64_3
+    procedure _NON_OVERRIDABLE :: update_int64_0
+    procedure _NON_OVERRIDABLE :: update_int64_1
+    procedure _NON_OVERRIDABLE :: update_int64_2
+    procedure _NON_OVERRIDABLE :: update_int64_3
     generic, public :: update => update_log8_0, update_log8_1, update_log8_2, update_log8_3
-    procedure, non_overridable :: update_log8_0
-    procedure, non_overridable :: update_log8_1
-    procedure, non_overridable :: update_log8_2
-    procedure, non_overridable :: update_log8_3
+    procedure _NON_OVERRIDABLE :: update_log8_0
+    procedure _NON_OVERRIDABLE :: update_log8_1
+    procedure _NON_OVERRIDABLE :: update_log8_2
+    procedure _NON_OVERRIDABLE :: update_log8_3
     generic, public :: update => update_log16_0, update_log16_1, update_log16_2, update_log16_3
-    procedure, non_overridable :: update_log16_0
-    procedure, non_overridable :: update_log16_1
-    procedure, non_overridable :: update_log16_2
-    procedure, non_overridable :: update_log16_3
+    procedure _NON_OVERRIDABLE :: update_log16_0
+    procedure _NON_OVERRIDABLE :: update_log16_1
+    procedure _NON_OVERRIDABLE :: update_log16_2
+    procedure _NON_OVERRIDABLE :: update_log16_3
     generic, public :: update => update_log32_0, update_log32_1, update_log32_2, update_log32_3
-    procedure, non_overridable :: update_log32_0
-    procedure, non_overridable :: update_log32_1
-    procedure, non_overridable :: update_log32_2
-    procedure, non_overridable :: update_log32_3
+    procedure _NON_OVERRIDABLE :: update_log32_0
+    procedure _NON_OVERRIDABLE :: update_log32_1
+    procedure _NON_OVERRIDABLE :: update_log32_2
+    procedure _NON_OVERRIDABLE :: update_log32_3
     generic, public :: update => update_log64_0, update_log64_1, update_log64_2, update_log64_3
-    procedure, non_overridable :: update_log64_0
-    procedure, non_overridable :: update_log64_1
-    procedure, non_overridable :: update_log64_2
-    procedure, non_overridable :: update_log64_3
+    procedure _NON_OVERRIDABLE :: update_log64_0
+    procedure _NON_OVERRIDABLE :: update_log64_1
+    procedure _NON_OVERRIDABLE :: update_log64_2
+    procedure _NON_OVERRIDABLE :: update_log64_3
     generic, public :: update => update_real32_0, update_real32_1, update_real32_2, update_real32_3
-    procedure, non_overridable :: update_real32_0
-    procedure, non_overridable :: update_real32_1
-    procedure, non_overridable :: update_real32_2
-    procedure, non_overridable :: update_real32_3
+    procedure _NON_OVERRIDABLE :: update_real32_0
+    procedure _NON_OVERRIDABLE :: update_real32_1
+    procedure _NON_OVERRIDABLE :: update_real32_2
+    procedure _NON_OVERRIDABLE :: update_real32_3
     generic, public :: update => update_real64_0, update_real64_1, update_real64_2, update_real64_3
-    procedure, non_overridable :: update_real64_0
-    procedure, non_overridable :: update_real64_1
-    procedure, non_overridable :: update_real64_2
-    procedure, non_overridable :: update_real64_3
+    procedure _NON_OVERRIDABLE :: update_real64_0
+    procedure _NON_OVERRIDABLE :: update_real64_1
+    procedure _NON_OVERRIDABLE :: update_real64_2
+    procedure _NON_OVERRIDABLE :: update_real64_3
     generic, public :: update => update_real128_0, update_real128_1, update_real128_2, update_real128_3
-    procedure, non_overridable :: update_real128_0
-    procedure, non_overridable :: update_real128_1
-    procedure, non_overridable :: update_real128_2
-    procedure, non_overridable :: update_real128_3
+    procedure _NON_OVERRIDABLE :: update_real128_0
+    procedure _NON_OVERRIDABLE :: update_real128_1
+    procedure _NON_OVERRIDABLE :: update_real128_2
+    procedure _NON_OVERRIDABLE :: update_real128_3
     generic, public :: update => update_char_0, update_char_1, update_char_2, update_char_3
-    procedure, non_overridable :: update_char_0
-    procedure, non_overridable :: update_char_1
-    procedure, non_overridable :: update_char_2
-    procedure, non_overridable :: update_char_3
+    procedure _NON_OVERRIDABLE :: update_char_0
+    procedure _NON_OVERRIDABLE :: update_char_1
+    procedure _NON_OVERRIDABLE :: update_char_2
+    procedure _NON_OVERRIDABLE :: update_char_3
   end type secure_hash
 
   abstract interface
