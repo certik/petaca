@@ -16,21 +16,27 @@ The compilers currently supported/tested are:
 
 Other compilers supporting the Fortran 2018 standard should work as well.
 
-Building with Pixi and Flang
------------------------------
+Building with Pixi
+-------------------
 [Pixi](https://pixi.sh) can manage the build dependencies (CMake, YAJL) from
-conda-forge. You need `flang` already available in your PATH.
+conda-forge. You need the Fortran compiler (`flang` or `lfortran`) already
+available in your PATH.
+
+Two pixi environments are provided — `flang` and `lfortran`. Each builds
+into its own directory (`build-flang` / `build-lfortran`) so they can
+coexist:
 
 ```sh
-pixi run test        # configure, build, and run the test suite
+pixi run -e flang test       # build and test with flang
+pixi run -e lfortran test    # build and test with lfortran
 ```
 
 The individual steps can also be run separately:
 
 ```sh
-pixi run configure   # run CMake configure
-pixi run build       # compile
-pixi run test        # run CTest
+pixi run -e flang configure  # run CMake configure
+pixi run -e flang build      # compile
+pixi run -e flang test       # run CTest
 ```
 
 On macOS, `flang` does not recognise the Apple-specific linker flags

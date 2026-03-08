@@ -5,11 +5,20 @@ name = "petaca"
 platforms = ["osx-arm64"]
 version = "0.1.0"
 
-[tasks]
-configure = "cmake -B build -DCMAKE_Fortran_COMPILER=flang -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=OFF -DCMAKE_USER_MAKE_RULES_OVERRIDE_Fortran=cmake/FlangFortranOverride.cmake"
-build = { cmd = "cmake --build build -j8", depends-on = ["configure"] }
-test = { cmd = "ctest --test-dir build --output-on-failure", depends-on = ["build"] }
-
 [dependencies]
 cmake = ">=4.2.3,<5"
 yajl = ">=2.1.0,<3"
+
+[feature.flang.tasks]
+configure = "cmake -B build-flang -DCMAKE_Fortran_COMPILER=flang -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=OFF -DCMAKE_USER_MAKE_RULES_OVERRIDE_Fortran=cmake/FlangFortranOverride.cmake"
+build = { cmd = "cmake --build build-flang -j8", depends-on = ["configure"] }
+test = { cmd = "ctest --test-dir build-flang --output-on-failure", depends-on = ["build"] }
+
+[feature.lfortran.tasks]
+configure = "cmake -B build-lfortran -DCMAKE_Fortran_COMPILER=lfortran -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=OFF -DCMAKE_USER_MAKE_RULES_OVERRIDE_Fortran=cmake/FlangFortranOverride.cmake"
+build = { cmd = "cmake --build build-lfortran -j8", depends-on = ["configure"] }
+test = { cmd = "ctest --test-dir build-lfortran --output-on-failure", depends-on = ["build"] }
+
+[environments]
+flang = ["flang"]
+lfortran = ["lfortran"]
