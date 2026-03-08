@@ -15,3 +15,31 @@ The compilers currently supported/tested are:
 * LLVM flang versions 19.1 and 20.1
 
 Other compilers supporting the Fortran 2018 standard should work as well.
+
+Building with Pixi and Flang
+-----------------------------
+[Pixi](https://pixi.sh) can manage the build dependencies (CMake, YAJL) from
+conda-forge. You need `flang` already available in your PATH.
+
+```sh
+pixi run test        # configure, build, and run the test suite
+```
+
+The individual steps can also be run separately:
+
+```sh
+pixi run configure   # run CMake configure
+pixi run build       # compile
+pixi run test        # run CTest
+```
+
+On macOS, `flang` does not recognise the Apple-specific linker flags
+(`-dynamiclib`, `-install_name`) that CMake emits by default, so the
+configure step uses `cmake/FlangFortranOverride.cmake` to replace them
+with the portable `-shared` flag. The main library is built as a static
+archive (`-DBUILD_SHARED_LIBS=OFF`).
+
+**Note:** The `timer_tree` test may fail with flang because `cpu_time`
+currently returns 0, causing a divide-by-zero in the test. All other
+tests pass.
+
