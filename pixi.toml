@@ -15,7 +15,7 @@ build = { cmd = "cmake --build build-flang -j8", depends-on = ["configure"] }
 test = { cmd = "ctest --test-dir build-flang --output-on-failure", depends-on = ["build"] }
 
 [feature.lfortran.tasks]
-configure = "cmake -B build-lfortran -DCMAKE_Fortran_COMPILER=lfortran -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=OFF -DCMAKE_USER_MAKE_RULES_OVERRIDE_Fortran=cmake/FlangFortranOverride.cmake -DCMAKE_Fortran_FLAGS='--cpp-infer --implicit-interface'"
+configure = "cmake -B build-lfortran -DCMAKE_Fortran_COMPILER=lfortran -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=OFF -DCMAKE_USER_MAKE_RULES_OVERRIDE_Fortran=cmake/LFortranFortranOverride.cmake -DCMAKE_Fortran_FLAGS='--cpp-infer --implicit-interface'"
 build = { cmd = "cmake --build build-lfortran -j1", depends-on = ["configure"] }
 test = { cmd = "ctest --test-dir build-lfortran --output-on-failure", depends-on = ["build"] }
 
