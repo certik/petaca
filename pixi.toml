@@ -20,6 +20,12 @@ build = { cmd = "cmake --build build-lfortran -j1", depends-on = ["configure"] }
 test = { cmd = "ctest --test-dir build-lfortran --output-on-failure", depends-on = ["build"] }
 test_lfortran = { cmd = "ctest --test-dir build-lfortran --output-on-failure -R 'fortran_dynamic_loader|map_any|any_scalar|any_vector|any_matrix|state_history|timer_tree|strip-file1|perf_test'", depends-on = ["build"] }
 
+[feature.gfortran.tasks]
+configure = "cmake -B build-gfortran -DCMAKE_Fortran_COMPILER=gfortran -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=OFF -DCMAKE_USER_MAKE_RULES_OVERRIDE_Fortran=cmake/LFortranFortranOverride.cmake"
+build = { cmd = "cmake --build build-gfortran -j1", depends-on = ["configure"] }
+test = { cmd = "ctest --test-dir build-gfortran --output-on-failure", depends-on = ["build"] }
+
 [environments]
 flang = ["flang"]
 lfortran = ["lfortran"]
+gfortran = ["gfortran"]
